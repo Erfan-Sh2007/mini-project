@@ -1,18 +1,21 @@
 #include <iostream>
 using namespace std;
 
-void jadval(int ,int,char);
+void jadval(char A[10][10]);
 
 
 int main()
 {
-    char s='*';
-   jadval(1,1,s);
+    char star='*';
+    char sharp='#';
+   char arr[10][10]={};
+   
+   jadval(arr);
     
 }
 
 
-void jadval(int m,int n,char func)
+void jadval(char A[10][10])
 {
  cout << "  ";
     for(int i=1;i<=10;i++)
@@ -35,17 +38,21 @@ void jadval(int m,int n,char func)
             for(int k=1;k<=11;k++)
             {
                 cout << "|";
-                if(m==i &&n==k&& func=='*')
+                if(A[i-1][k-1]==0)
                 {
-                    cout <<" "<<"*"<<" ";
-                }
-                if(m==i &&n==k&& func=='#')
-                {
-                    cout <<" "<<"#"<<" ";
-                }
-
-                else{
                     cout <<"   ";
+                
+                }
+                else{
+
+                    if(A[i-1][k-1]=='*')
+                    {
+                        cout <<" "<<"*"<<" ";
+                    }
+                    else if(A[i-1][k-1]=='#')
+                    {
+                        cout << " "<<"#"<<" ";
+                    }
                 }
             }
             cout << endl<<"    ";
