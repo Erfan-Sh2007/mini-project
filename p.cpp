@@ -6,7 +6,7 @@ void jadval(int ,int,char);
 
 int main()
 {
-    char s='#';
+    char s='*';
    jadval(1,1,s);
     
 }
