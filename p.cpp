@@ -5,7 +5,6 @@ using namespace std;
 
 void jadval(char A[10][10]);
 void input_ship(char ary[10][10],int size_ship);
-bool checker(char B[10][10]);
 int main()
 {
     string player_one;
