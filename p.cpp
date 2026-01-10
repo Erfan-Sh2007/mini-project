@@ -17,6 +17,8 @@ int main()
     cin >> player_one;
     cout << "Enter name player number 2-->>  ";
     cin >> player_two;
+
+    cout << endl;
     char map_player_number1[10][10];
     char map_player_number2[10][10];
     
@@ -38,11 +40,11 @@ int main()
         int x;
         int y;
 
-        cout <<"turn player number one :  ";
-        cout << "          "<< player_one<< endl;
-        cout << "Enter two integer number  for hit "<<player_two<< "map"<< endl;
+        
+        cout << "                     "<< player_one<< endl;
          jadval(map_player_number1);
-         cout << endl;
+        cout << "Enter two integer number  for hit "<<player_two<< " map"<< endl;
+        
          cin >> x >>y;
     
         shut_ship(map_player_number2,x,y);
@@ -53,12 +55,13 @@ int main()
                 break;
          }
 
-         cout << endl<<endl<<endl;
-        cout <<"turn player number two :  ";
-        cout << "          "<< player_two<< endl;
-        cout << "Enter two integer number  for hit "<<player_one<< " map"<< endl;
+        cout << endl<<endl<<endl;
+        
+        cout << "                     "<< player_two<< endl; 
         jadval(map_player_number2);
-        cout << endl;
+        cout << "Enter two integer number  for hit "<<player_one<< " map"<< endl;
+       
+        
         cin >> x >>y;
         shut_ship(map_player_number1,x,y);
 
@@ -124,6 +127,7 @@ void jadval(char A[10][10])
             cout << endl<<"    ";
         }
     }
+    cout << endl;
 
 }
 
@@ -174,7 +178,7 @@ void input_ship(char ary[10][10],int size_ship)
       
    }
    char setare='*';
-   cout <<random_satr<<" "<< random_soton<< endl;
+  
 
    for(int i=0;i<size_ship;i++)
    {
