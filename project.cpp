@@ -5,9 +5,7 @@ using namespace std;
 
 void jadval(char A[10][10]);
 void input_ship(char ary[10][10],int size_ship);
-bool checker_star(char B[10][10]);
-void shut_ship(char C[10][10],int ,int);
-void update_map(char ara[10][10],int ,int);
+bool checker(char B[10][10]);
 int main()
 {
     string player_one;
@@ -27,7 +25,7 @@ int main()
              map_player_number2[i][j]=48;
         }
             
-      for(int i=2;i<=5 ;i++)
+       for(int i=2;i<=5 ;i++)
              input_ship(map_player_number1,i);
       for(int i=2;i<=5;i++)
              input_ship(map_player_number2,i);
@@ -35,40 +33,7 @@ int main()
      
      while(1)
      {
-        int x;
-        int y;
-
-        cout <<"turn player number one :  ";
-        cout << "          "<< player_one<< endl;
-        cout << "Enter two integer number  for hit "<<player_two<< "map"<< endl;
-         jadval(map_player_number1);
-         cout << endl;
-         cin >> x >>y;
-    
-        shut_ship(map_player_number2,x,y);
-
-        if(checker_star(map_player_number2))
-         {
-            cout << "won "<<player_one<<" this game"<< endl;
-                break;
-         }
-
-         cout << endl<<endl<<endl;
-        cout <<"turn player number two :  ";
-        cout << "          "<< player_two<< endl;
-        cout << "Enter two integer number  for hit "<<player_one<< " map"<< endl;
-        jadval(map_player_number2);
-        cout << endl;
-        cin >> x >>y;
-        shut_ship(map_player_number1,x,y);
-
-        if(checker_star(map_player_number1))
-        {
-            cout << "won "<< player_two<< " this game";
-            break;
-        }
-        cout <<endl << endl<< endl;
-     
+        
      }
     
          
@@ -132,7 +97,7 @@ void input_ship(char ary[10][10],int size_ship)
    
    int random_satr;
    int random_soton;
-
+   
     srand(time(0));
     random_satr = rand() % (10)+1;
     srand(time(0));
@@ -145,11 +110,10 @@ void input_ship(char ary[10][10],int size_ship)
          int alaki=0; 
          for(int i=0 ;i<10;i++)
          {
-            if(ary[random_satr-1][i] == 42)
+            if(ary[random_satr-1][i]==42)
             {
                 alaki=1;
             }
-
             if(random_satr<=9 &&  random_soton+i-1<=(size_ship+random_soton +2))
             {
                 if((ary[random_satr][random_soton+i-1]==42)&&(ary[random_satr][random_soton+i-2]==42))
@@ -157,7 +121,6 @@ void input_ship(char ary[10][10],int size_ship)
                     alaki=1;
                 }
             }
-
             if(random_satr-2>=0 && (random_soton+i-1)<=(random_soton+size_ship +2))
             {
                 if(ary[random_satr-2][random_soton+i-1]==42)
@@ -165,7 +128,6 @@ void input_ship(char ary[10][10],int size_ship)
                     alaki=1;
                 }
             }
-
          }
          if(alaki==0)
          {
@@ -183,38 +145,3 @@ void input_ship(char ary[10][10],int size_ship)
 
    }
 }
-
-
-bool checker_star(char B[10][10])   //checker : do there  is star in array?
-{
-    for(int i=0 ;i<10;i++)
-    {
-        for(int j=0 ;j<10 ;j++)
-        {
-            if(B[i][j]==42)         // 42 is star ascii code.
-            {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
-
-void shut_ship(char C[10][10],int sat,int sot)
-{
-
-    if(C[sat-1][sot-1]==42)                     // 42 is star ascii code.
-    {
-        C[sat-1][sot-1]=35;                    //35 is sharp ascii code.
-
-        cout << "shut was secesfull"<< endl;
-
-    }
-    else{
-        cout << "shut wasnot secesfull"<< endl;
-    }
-}
-
-
