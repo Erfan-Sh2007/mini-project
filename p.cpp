@@ -36,7 +36,7 @@ int main()
       for(int i=2;i<=5;i++)
              input_ship(map_player_number2,i,place_ships_player_number2);
 
-     jadval(map_player_number1);
+     
      while(1)
      {
         int x;
