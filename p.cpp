@@ -10,6 +10,7 @@ void shut_ship(char C[10][10]);
 void moving_ship(char ARAY[10][10],int D[2][5] );
 void scan_area(char ARA[10][10]);
 void repair_ship(char Map_player[10][10]);
+
 int main()
 {
     string player_one;
@@ -29,18 +30,22 @@ int main()
     int using_repair_player_number2=3;
     int using_scan_area_player_number1=1;
     int using_scan_area_player_number2=1;
-    
-    for(int i=0 ;i<10;i++)
-        for(int j=0 ;j<10 ;j++)
+
+    for(int i=0 ;i<10 ;i++)
+    {
+        for( int j=0; j<10 ;j++)
         {
-             map_player_number1[i][j]=48;
-             map_player_number2[i][j]=48;
+            map_player_number1[i][j]=48;
+            map_player_number2[i][j]=48;
         }
-            
+    }
+
       
      input_ship(map_player_number1,place_ships_player_number1);
+    //  input_min(map_player_number1);
       
      input_ship(map_player_number2,place_ships_player_number2);
+    //  input_min(map_player_number2);
 
     //   for( int i=0;i<=4;i++)
     //   {
@@ -52,7 +57,7 @@ int main()
     //   }
       int alaki=1;
      while(1)
-     {
+   {
         int x;
         int y;
         char next;
@@ -84,16 +89,14 @@ int main()
 
          }
          
-        switch(choose)
+      switch(choose)
         {
-            
-
-        case 1:
+         case 1:
          
             shut_ship(map_player_number2);
             
             break;
-        case 2 :
+         case 2 :
             if(using_scan_area_player_number1==1)
             {
                   scan_area(map_player_number2);
@@ -103,9 +106,10 @@ int main()
 
                 cout << "you used scan !! "<<endl << endl;
                 shut_ship(map_player_number2);
+            }
           break;
 
-        case 3:
+         case 3:
         
             if(using_repair_player_number1>=1)
             {
@@ -121,7 +125,7 @@ int main()
             
          break;
 
-        default:
+         default:
             break;
         }  
        
@@ -157,16 +161,16 @@ int main()
             }
 
          }
-    switch (choose)
+     switch (choose)
        {
-       case 1:
+        case 1:
 
           
             shut_ship(map_player_number1);
         
           break;
         
-        case 2:
+         case 2:
             if (using_scan_area_player_number2==1)
             {
                  scan_area(map_player_number1);
@@ -181,7 +185,7 @@ int main()
            
          break;
 
-        case 3:
+         case 3:
             if(using_repair_player_number2>=1)
             {
                   repair_ship(map_player_number2);
@@ -196,8 +200,8 @@ int main()
 
          break;
 
-       default:
-        break;
+         default:
+         break;
        }
 
         if(checker_star(map_player_number1))
@@ -211,8 +215,8 @@ int main()
         }
         cin >>next;
         
-            //   moving_ship(map_player_number1,place_ships_player_number1);
-            //   moving_ship(map_player_number2,place_ships_player_number2);
+              moving_ship(map_player_number1,place_ships_player_number1);
+              moving_ship(map_player_number2,place_ships_player_number2);
         
         
         
@@ -220,13 +224,10 @@ int main()
         alaki=0;
      
      }
-    
-         
-    
-   
-   
+  
     return 0;
 }
+
 
 
 void jadval(char A[10][10])
@@ -258,7 +259,7 @@ void jadval(char A[10][10])
                 
                 }
                 else{
-                     if(k!=11)
+                  if(k!=11)
                      {
                         if(A[i-1][k-1]=='*')
                         {
@@ -283,15 +284,17 @@ void jadval(char A[10][10])
  void input_ship(char ary[10][10],int place[2][5])
 {
     int size_ship=2;
+     
    for( int k=0; k<5 ;k++)
    {
 
+           
             int random_satr;
             int random_soton;
-        
-                srand(time(0));
-                random_satr = rand() % (10)+1;
-                random_soton = rand() % (10-size_ship+1)+1;
+             srand(time(0));
+             random_satr = rand() % (10)+1;
+             random_soton = rand() % (10-size_ship+1)+1;
+
                 int temp=1; 
             while(temp==1)
             {
@@ -313,6 +316,7 @@ void jadval(char A[10][10])
             }
             place[0][k]=random_satr-1;
             place[1][k]=random_soton-1;
+            cout << random_satr << " "<< random_soton<< endl;
 
             for(int i=0;i<size_ship;i++)
             {
@@ -378,7 +382,8 @@ void shut_ship(char C[10][10])
         cout << "shut was secesfull"<< endl;
 
     }
-    else{
+    else 
+    {
         cout << "shut wasnot secesfull"<< endl;
     }   
 }
@@ -395,10 +400,13 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
 
         int move=rand()%4;
         cout<< move<< endl;
+         int temp_up=1;
+         int temp_down=1;
         
-        if(move==0)   //right
-        {
-            if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9))
+        if(move==0)
+        { 
+        
+            if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9)&& ARAY[satr][soton+size_this_ship+1]!='@')
             {
                   for(int k=soton +size_this_ship ;k>=soton;k--)
                   {
@@ -413,24 +421,29 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                   placeship[1][i]++;
             }
             else{
-                 for(int k=soton ;k<=soton+size_this_ship;k++)
-                  {
-                    if(ARAY[satr][k]==42)
-                        ARAY[satr][k-1]=42;
+                if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && (soton-1>=0) && ARAY[satr][soton-1]!='@')
+                {
+                    for(int k=soton ;k<=soton+size_this_ship;k++)
+                    {
+                        if(ARAY[satr][k]==42)
+                            ARAY[satr][k-1]=42;
 
-                    if(ARAY[satr][k]==35)
-                        ARAY[satr][k-1]=35;
-                  }
-                  ARAY[satr][soton+size_this_ship]=48;
+                        if(ARAY[satr][k]==35)
+                            ARAY[satr][k-1]=35;
+                    }
+                    ARAY[satr][soton+size_this_ship]=48;
 
-                  placeship[1][i]--;
+                    placeship[1][i]--;
+                }
             }
+         }
 
 
-        }
-        if(move==1)         //left
-        {
-            if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && soton-1>=0)
+        
+         if(move==1)
+         {     
+        
+            if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && soton-1>=0 && ARAY[satr][soton-1]!='@')
             {
                 for(int k=soton ;k<=soton+size_this_ship ;k++)
                 {
@@ -445,39 +458,42 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                 placeship[1][i]--;
             }
             else{
-                  for(int k=soton +size_this_ship ;k>=soton;k--)
+                  if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9)&& ARAY[satr][soton+size_this_ship+1]!='@')
                   {
-                    if(ARAY[satr][k]==42)
-                        ARAY[satr][k+1]=42;
+                    for(int k=soton +size_this_ship ;k>=soton;k--)
+                    {
+                        if(ARAY[satr][k]==42)
+                            ARAY[satr][k+1]=42;
 
-                    if(ARAY[satr][k]==35)
-                        ARAY[satr][k+1]=35;
-                  }
-                  ARAY[satr][soton]=48;
+                        if(ARAY[satr][k]==35)
+                            ARAY[satr][k+1]=35;
+                    }
+                    ARAY[satr][soton]=48;
 
-                  placeship[1][i]++;
+                    placeship[1][i]++;
+                 }
             }
         }
 
-        if(move==2)         //up
-        {
-            int temp_up=1;
-            if(satr-1>=0)
-            {
+        if(move==2)
+        {       
+           
+             if(satr-1>=0)
+             {
                 for(int j=soton ;j<=soton +size_this_ship ;j++)
                 {
-                    if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35)
+                    if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35||ARAY[satr-1][j]=='@')
                         temp_up=0;
                 }
-            }
-            else{
+             }
+             else{
                 temp_up=0;
-            }
+             }
                
               
 
-            if(temp_up==1)
-            {
+             if(temp_up==1)
+             {
                 for(int k=soton ;k<=soton +size_this_ship; k++)
                 {
                     if(ARAY[satr][k]==42)
@@ -489,51 +505,49 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                     ARAY[satr][k]=48;
                 }
                 placeship[0][i]--;
-            }
-            else{
-                int temp_down=1;
-                if(satr+1<=9)
-                {
-                    for(int j=soton ;j<=soton +size_this_ship;j++)
+             }
+             else{
+                    
+                    if(satr+1<=9)
                     {
-                        if(ARAY[satr+1][j]==42 || ARAY[satr][j]==35)
-                            temp_down=0;
+                        for(int j=soton ;j<=soton +size_this_ship;j++)
+                        {
+                            if(ARAY[satr+1][j]==42 || ARAY[satr][j]==35 || ARAY[satr+1][j]=='@')
+                                temp_down=0;
+                        }
                     }
-                }
-                else{
-                    temp_down=0;
-                }
+                    else{
+                        temp_down=0;
+                    }
 
 
-                if(temp_down==1)
-                {
-                    for(int k=soton ;k<=soton +size_this_ship; k++)
+                    if(temp_down==1)
                     {
-                        if(ARAY[satr][k]==42)
-                            ARAY[satr+1][k]=42;
+                        for(int k=soton ;k<=soton +size_this_ship; k++)
+                        {
+                            if(ARAY[satr][k]==42)
+                                ARAY[satr+1][k]=42;
 
-                        if(ARAY[satr][k]==35)
-                            ARAY[satr+1][k]=35;
-                            
-                        ARAY[satr][k]=48;
+                            if(ARAY[satr][k]==35)
+                                ARAY[satr+1][k]=35;
+                                
+                            ARAY[satr][k]=48;
+                        }
+                        placeship[0][i]++;
+
                     }
-                    placeship[0][i]++;
-
-                }
-                
-
-                }
+               }
          }
 
-         if(move==3)
-         {  
-                int temp_down=1;
+         if(move==3)    
+         {
+
                 if(satr+1<=9)
                 {
                    
                    for(int j=soton ;j<=soton +size_this_ship && temp_down==1 ;j++)
                     {
-                        if(ARAY[satr+1][j]==42 ||ARAY[satr+1][j]==35)
+                        if(ARAY[satr+1][j]==42 ||ARAY[satr+1][j]==35 || ARAY[satr+1][j]=='@')
                                temp_down=0;
                      }
                 }
@@ -560,12 +574,12 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
               }
               else {
 
-                 int temp_up=1;
+                 
                  if(satr-1>=0)
                  {
                     for(int j=soton ;j<=soton +size_this_ship && temp_up==1 ;j++)
                     {
-                      if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35)
+                      if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35 || ARAY[satr-1][j]=='@')
                             temp_up=0;
                     }
                  }
@@ -590,18 +604,19 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                  }
                
               }
-                
+
             }
+     
            
             cout <<"size: " <<size_this_ship<<endl;
             if(i!=1)
              {
                 size_this_ship++;
              }
-         }
+         
     
      
-    
+    }
 }
 
 void scan_area(char ARA[10][10])
@@ -704,9 +719,10 @@ void repair_ship(char Map_player[10][10] )
     if(Map_player[satr_map-1][soton_map-1]==35)
     {
         Map_player[satr_map-1][soton_map-1]=42;
-        cout << "Repaired ";
+        cout << "Repaired "<<endl;
     }
     
    
    
 }
+
