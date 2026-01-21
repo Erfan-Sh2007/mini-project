@@ -1,27 +1,23 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
-void jadval(char A[10][10]);
-void input_ship(char ary[10][10],int place[2][5]);
-bool checker_star(char B[10][10]);
-void shut_ship(char C[10][10]);
-void moving_ship(char ARAY[10][10],int D[2][5] );
-void scan_area(char ARA[10][10]);
-void repair_ship(char Map_player[10][10]);
+void jadval(char A[10][10]);                        // print map game
+void input_ship(char ary[10][10],int place[2][5]);  // input ships randomly
+bool checker_star(char B[10][10]);                  // check for exist star
+void shut_ship(char C[10][10]);                     // shuting
+void moving_ship(char ARAY[10][10],int D[2][5] );   // moving ships randomly
+void scan_area(char ARA[10][10]);                   // scan an area for exist ships
+void repair_ship(char Map_player[10][10]);          // repiar ships 
 
 int main()
 {
     string player_one;
     string player_two;
 
-    cout <<"Enter name player number 1-->>  ";
-    cin >> player_one;
-    cout << "Enter name player number 2-->>  ";
-    cin >> player_two;
-
-    cout << endl;
+   
     char map_player_number1[10][10];
     char map_player_number2[10][10];
     int place_ships_player_number1[2][5];
@@ -40,21 +36,16 @@ int main()
         }
     }
 
-      
-     input_ship(map_player_number1,place_ships_player_number1);
-    //  input_min(map_player_number1);
-      
-     input_ship(map_player_number2,place_ships_player_number2);
-    //  input_min(map_player_number2);
+    cout <<"Enter name player number 1-->>  ";
+    cin >> player_one;
+    cout << endl;
+    input_ship(map_player_number1,place_ships_player_number1);
 
-    //   for( int i=0;i<=4;i++)
-    //   {
-    //     cout << place_ships_player_number1[0][i] <<place_ships_player_number1[1][i]<< endl;
-    //   }
-    //    for( int i=0;i<=4;i++)
-    //   {
-    //     cout << place_ships_player_number2[0][i] <<place_ships_player_number2[1][i]<< endl;
-    //   }
+    cout << "Enter name player number 2-->>  ";
+    cin >> player_two;
+
+    input_ship(map_player_number2,place_ships_player_number2);
+   
       int alaki=1;
      while(1)
    {
@@ -110,27 +101,26 @@ int main()
           break;
 
          case 3:
-        
-            if(using_repair_player_number1>=1)
-            {
-                repair_ship(map_player_number1);
-                using_repair_player_number1--;
+                   
+                         if(using_repair_player_number1>=1)
+                        {
+                            repair_ship(map_player_number1);
+                            using_repair_player_number1--;
 
-            }
-            else{
+                        }
+                        else{
 
-               cout << "you used all of repair "<< endl;
-                shut_ship(map_player_number2);
-            }
+                             cout << "you used all of repair "<< endl;
+                               shut_ship(map_player_number2);
+                           }
+                   
+                       
             
          break;
 
          default:
             break;
-        }  
-       
-        
-
+        }
 
         if(checker_star(map_player_number2))
          {
@@ -193,7 +183,7 @@ int main()
             }
             else{
                 cout << "you used all of repair "<< endl << endl;
-                
+                    
                 shut_ship(map_player_number1);
             }
           
@@ -284,21 +274,17 @@ void jadval(char A[10][10])
  void input_ship(char ary[10][10],int place[2][5])
 {
     int size_ship=2;
-     
+    
+      srand(time(0));
    for( int k=0; k<5 ;k++)
    {
-
+     int random_satr;
+     int random_soton;
            
-            int random_satr;
-            int random_soton;
-             srand(time(0));
-             random_satr = rand() % (10)+1;
-             random_soton = rand() % (10-size_ship+1)+1;
-
                 int temp=1; 
             while(temp==1)
             {
-                srand(time(0));
+                
                 random_satr = rand() % (10)+1;
                 random_soton = rand() % (10-size_ship+1)+1;
 
@@ -316,7 +302,8 @@ void jadval(char A[10][10])
             }
             place[0][k]=random_satr-1;
             place[1][k]=random_soton-1;
-            cout << random_satr << " "<< random_soton<< endl;
+            cout <<" "<<random_satr<< " "<<random_soton;
+            
 
             for(int i=0;i<size_ship;i++)
             {
@@ -331,9 +318,10 @@ void jadval(char A[10][10])
             }
         
           
-      
+       cout << endl;
            
      }
+    
 
 }
 
@@ -391,22 +379,22 @@ void shut_ship(char C[10][10])
 
 void moving_ship(char ARAY[10][10],int placeship[2][5])
 {
+    
     int size_this_ship=2;
     for(int i=0;i<=4;i++)
     {
-       
         int satr=placeship[0][i];
         int soton=placeship[1][i];
 
         int move=rand()%4;
-        cout<< move<< endl;
-         int temp_up=1;
-         int temp_down=1;
+    
+        
+         
         
         if(move==0)
         { 
         
-            if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9)&& ARAY[satr][soton+size_this_ship+1]!='@')
+            if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9))
             {
                   for(int k=soton +size_this_ship ;k>=soton;k--)
                   {
@@ -421,7 +409,7 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                   placeship[1][i]++;
             }
             else{
-                if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && (soton-1>=0) && ARAY[satr][soton-1]!='@')
+                if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && (soton-1>=0))
                 {
                     for(int k=soton ;k<=soton+size_this_ship;k++)
                     {
@@ -431,7 +419,8 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                         if(ARAY[satr][k]==35)
                             ARAY[satr][k-1]=35;
                     }
-                    ARAY[satr][soton+size_this_ship]=48;
+                    //ARAY[satr][soton+size_this_ship]=48;
+                    ARAY[satr][soton+size_this_ship-1]=48;
 
                     placeship[1][i]--;
                 }
@@ -443,9 +432,9 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
          if(move==1)
          {     
         
-            if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && soton-1>=0 && ARAY[satr][soton-1]!='@')
+            if(ARAY[satr][soton-1]!=35 && ARAY[satr][soton-1]!=42 && soton-1>=0 )
             {
-                for(int k=soton ;k<=soton+size_this_ship ;k++)
+                for(int k=soton-1 ;k<soton+size_this_ship ;k++)
                 {
                     if(ARAY[satr][k]==42)
                         ARAY[satr][k-1]=42;
@@ -453,12 +442,12 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                     if(ARAY[satr][k]==35)
                         ARAY[satr][k-1]=35;
                 }
-                ARAY[satr][soton+size_this_ship]=48;
-
+              
+                ARAY[satr][soton+size_this_ship-1]=48;
                 placeship[1][i]--;
             }
             else{
-                  if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9)&& ARAY[satr][soton+size_this_ship+1]!='@')
+                  if(ARAY[satr][soton+size_this_ship+1]!=35 && ARAY[satr][soton+size_this_ship+1]!=42 && (soton+size_this_ship+1<=9))
                   {
                     for(int k=soton +size_this_ship ;k>=soton;k--)
                     {
@@ -477,12 +466,13 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
 
         if(move==2)
         {       
+             int temp_up=1;
            
              if(satr-1>=0)
              {
                 for(int j=soton ;j<=soton +size_this_ship ;j++)
                 {
-                    if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35||ARAY[satr-1][j]=='@')
+                    if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35)
                         temp_up=0;
                 }
              }
@@ -507,12 +497,12 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                 placeship[0][i]--;
              }
              else{
-                    
+                    int temp_down=1;
                     if(satr+1<=9)
                     {
                         for(int j=soton ;j<=soton +size_this_ship;j++)
                         {
-                            if(ARAY[satr+1][j]==42 || ARAY[satr][j]==35 || ARAY[satr+1][j]=='@')
+                            if(ARAY[satr+1][j]==42 || ARAY[satr][j]==35)
                                 temp_down=0;
                         }
                     }
@@ -541,13 +531,13 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
 
          if(move==3)    
          {
-
+            int temp_down=1;
                 if(satr+1<=9)
                 {
                    
                    for(int j=soton ;j<=soton +size_this_ship && temp_down==1 ;j++)
                     {
-                        if(ARAY[satr+1][j]==42 ||ARAY[satr+1][j]==35 || ARAY[satr+1][j]=='@')
+                        if(ARAY[satr+1][j]==42 ||ARAY[satr+1][j]==35)
                                temp_down=0;
                      }
                 }
@@ -571,15 +561,16 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
                      ARAY[satr][k]=48;
 
                 }
+                placeship[0][i]++;
               }
               else {
 
-                 
+                 int temp_up=1;
                  if(satr-1>=0)
                  {
                     for(int j=soton ;j<=soton +size_this_ship && temp_up==1 ;j++)
                     {
-                      if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35 || ARAY[satr-1][j]=='@')
+                      if(ARAY[satr-1][j]==42 ||ARAY[satr-1][j]==35 )
                             temp_up=0;
                     }
                  }
@@ -608,7 +599,7 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
             }
      
            
-            cout <<"size: " <<size_this_ship<<endl;
+           
             if(i!=1)
              {
                 size_this_ship++;
@@ -617,65 +608,71 @@ void moving_ship(char ARAY[10][10],int placeship[2][5])
     
      
     }
+    
 }
 
 void scan_area(char ARA[10][10])
 {
-    int x1;
-    int y1;
-    int x2;
-    int y2;
-    cout << "Enter Addres top left : ";
-    cin >> x1 >> y1;
-    while(1)
-    {
-        if(x1<=7 && y1 <=7)
-            break;
-        else{
-
-            cout << "Please Enter a number between 1 and 7 ";
-            cin >> x1 >> y1;
-        }
-    }
-   
-    cout << "Enter addres under right : ";
-    cin >> x2 >> y2;
-    while(1)
-    {
-        if((x1+3)==x2 && (y1+3)==y2)
-            break;
-
-        else{
-            cout << "Enter a crrect number for under right : ";
-            cin >>x2 >> y2;
-        }
-    }
-    int temp=0;
-    for(int i=x1; i<=x2  ;i++)
-    {
-        for(int j=y1;j<=y2 ;j++)
-        {
-            if(ARA[i-1][j-1]==42 || ARA[i-1][j-1]==35)
-            {
-                temp=1;
-            }
-                 
-        }
-    }
-    if(temp==1)
-    {
-        cout << "Ship Detected !!! "<< endl;
-
-    }
-    else if(temp==0){
-        cout << "No Ship In Area !!! " << endl;
-    }
     
+  
+ 
+            int x1;
+            int y1;
+            int x2;
+            int y2;
+            cout << "Enter Addres top left : ";
+            cin >> x1 >> y1;
+            while(1)
+            {
+                if(x1<=7 && y1 <=7)
+                    break;
+                else{
+
+                    cout << "Please Enter a number between 1 and 7 ";
+                    cin >> x1 >> y1;
+                }
+            }
+        
+            cout << "Enter addres under right : ";
+            cin >> x2 >> y2;
+            while(1)
+            {
+                if((x1+3)==x2 && (y1+3)==y2)
+                    break;
+
+                else{
+                    cout << "Enter a crrect number for under right : ";
+                    cin >>x2 >> y2;
+                }
+            }
+            int temp=0;
+            for(int i=x1; i<=x2  ;i++)
+            {
+                for(int j=y1;j<=y2 ;j++)
+                {
+                    if(ARA[i-1][j-1]==42 || ARA[i-1][j-1]==35)
+                    {
+                        temp=1;
+                    }
+                        
+                }
+            }
+            if(temp==1)
+            {
+                cout << "Ship Detected !!! "<< endl;
+
+            }
+            else if(temp==0){
+                cout << "No Ship In Area !!! " << endl;
+            }
+   
+            
 }
 
 
-void repair_ship(char Map_player[10][10] )
+void repair_ship(char Map_player[10][10])
 {
+
     int satr_map;
     int soton_map;
 
