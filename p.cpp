@@ -141,20 +141,19 @@ int main()
             switch (result)
             {
             case 0:
-                move_right(map_player_number2,place_size_ships_player_number2, ship_number);
-                cout << "R : "<<ship_number<< endl;
+                
                 break;
             case 1:
                 move_left(map_player_number2, place_size_ships_player_number2, ship_number);
-                cout << "L : "<< ship_number << endl;
+                
                 break;
             case 2:
                 move_up(map_player_number2,place_size_ships_player_number2,ship_number);
-                cout << "U : "<< ship_number << endl;
+              
                 break;
             case 3:
                 move_down(map_player_number2,place_size_ships_player_number2, ship_number);
-                cout << "D : "<< ship_number << endl;
+               
                 break;
 
             default:
@@ -251,19 +250,19 @@ int main()
             {
             case 0:
                 move_right(map_player_number1,place_size_ships_player_number1, ship_number);
-                cout << "R : "<< ship_number<< endl;
+               
                 break;
             case 1:
                 move_left(map_player_number1, place_size_ships_player_number1, ship_number);
-                cout << "L : "<< ship_number << endl;
+              
                 break;
             case 2:
                 move_up(map_player_number1,place_size_ships_player_number1,ship_number);
-                cout << "U : "<< ship_number << endl;
+             
                 break;
             case 3:
                 move_down(map_player_number1,place_size_ships_player_number1, ship_number);
-                cout << "D : "<< ship_number << endl;
+             
                 break;
 
             default:
@@ -281,8 +280,10 @@ int main()
 void jadval(char A[10][10])
 {
  cout << "  ";
+
     for(int i=1;i<=10;i++)
-        cout << "   "<<i;
+         cout << "   "<<i;
+
     cout << endl<<"    ";
 
     for(int i=1;i<=11;i++)
@@ -292,21 +293,27 @@ void jadval(char A[10][10])
         {
             cout <<"---"<< " ";
         }
+
         if(i!=11)
         {
+            
             if(i!=10)
                cout <<endl << i<<"  ";
-            else{cout <<endl <<i <<" ";}
+            else
+            {
+                cout <<endl <<i <<" ";
+            }
 
             for(int k=1;k<=11;k++)
             {
                 cout << "|";
+
                 if(A[i-1][k-1]=='0')
                 {
                     cout <<"   ";
-                
                 }
-                else{
+                else
+                {
                   if(k!=11)
                      {
                         if(A[i-1][k-1]=='*')
@@ -320,9 +327,11 @@ void jadval(char A[10][10])
                     }
                 }
             }
+
             cout << endl<<"    ";
         }
     }
+    
     cout << endl;
 
 }
