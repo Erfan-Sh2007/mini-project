@@ -722,6 +722,4 @@ void repair_ship(char Map_player[10][10] )
         cout << "Repaired "<<endl;
     }
     
-   
-   
 }
