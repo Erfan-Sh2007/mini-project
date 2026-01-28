@@ -4,6 +4,7 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 void jadval(char A[10][10]);                        // print map game
 void input_ship(char ary[10][10],int place[3][5]);  // input ships randomly
 bool checker_star(char B[10][10]);                  // check for exist star
@@ -15,6 +16,10 @@ void move_down(char D[10][10], int place_d[3][5],int andis_d );
 void scan_area(char ARA[10][10]);                   // scan an area for exist ships
 void repair_ship(char Map_player[10][10]);          // repiar ships 
 
+=======
+void jadval(char A[10][10]);
+void input_ship(char ary[10][10],int size_ship);
+>>>>>>> e133669 (input ships in random place)
 int main()
 {
     string player_one;
